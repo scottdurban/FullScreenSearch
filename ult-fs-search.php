@@ -12,11 +12,8 @@ License: GPL3 or later
 if(is_admin()){
 
 } else {
-	$script =  plugins_url( 'assets/js/ult-fs-search.js', __FILE__ ) ;
-	$style  =  plugins_url( 'assets/css/ult-fs-search.css', __FILE__ );
-	wp_enqueue_script('ult-fs-search',$script,array('jquery'),'1.0.0',true);
-	wp_enqueue_style('ult-fs-search',$style);
-	add_action('wp_footer','ult_fs_search');
+		add_action( 'wp_enqueue_scripts', 'search_scripts' );
+		add_action('wp_footer','ult_fs_search');
 
 }
 
@@ -30,4 +27,12 @@ function ult_fs_search(){
 		</form>
 	</div>
 <?php
+}
+
+
+function search_scripts(){
+	$script =  plugins_url( 'assets/js/ult-fs-search.js', __FILE__ ) ;
+	$style  =  plugins_url( 'assets/css/ult-fs-search.css', __FILE__ );
+	wp_enqueue_script('ult-fs-search',$script,array('jquery'),'1.0.0',true);
+	wp_enqueue_style('ult-fs-search',$style);
 }
